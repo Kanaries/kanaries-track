@@ -1,0 +1,43 @@
+[project]
+name = "kanareis_track"
+dynamic = ["version"]
+requires-python = ">=3.6"
+description = "kanareis_track: track to kanareis data infra"
+authors = [ { name = "kanaries", email = "support@kanaries.net" } ]
+license-files = { paths = ["LICENSE"] }
+readme = "README.md"
+keywords = [ 'kanareis', 'track' ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+]
+dependencies = []
+[project.urls]
+homepage = "https://github.com/Kanaries/kanaries-track"
+repository = "https://github.com/Kanaries/kanaries-track"
+# changelog, documentation
+
+[project.optional-dependencies]
+dev = [
+    "build",
+    "twine",
+    "pytest",
+]
+
+[tool.hatch]
+version = { path = "kanaries_track/__init__.py" }
+
+[tool.hatch.build]
+include = [
+    "kanaries_track",
+]
+exclude = [ "/tests" ]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "README.md", "LICENSE",
+    "gw_dsl_parser"
+]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
