@@ -1,0 +1,57 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Auto CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-py:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.7', '3.11']
+        os-version: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os-version }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download Track Repo
+        uses: actions/download-artifact@v3
+        id: build-py
+      - name: Use Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version == '3.7' && matrix.os-version == 'macos-latest' && '3.7.16' || matrix.python-version }}
+      - name: Try Installing
+        working-directory: ./
+        run: |
+          pip install ./
+      - name: Try Pytest
+        working-directory: ./
+        run: |
+          pip install pytest
+          pytest tests
+      - name: Try building
+        working-directory: ./
+        run: |
+          pip install build twine
+          python -m build .
+      - name: Uploading PyPI
+        if: ${{ matrix.python-version == '3.11' && matrix.os-version == 'ubuntu-latest' }}
+        uses: pypa/gh-action-pypi-publish@v1.8.5
+        with:
+          # PyPI user
+          # Password for your PyPI user or an access token
+          password: ${{ secrets.PYPI_TOKEN }}
+          # The target directory for distribution
+          packages-dir: dist
+          # Check metadata before uploading
+          verify-metadata: true
+          # Do not fail if a Python package distribution exists in the target package index
+          skip-existing: true
+          # Show verbose output.
+          verbose: true
+          # Show hash values of files to be uploaded
+          print-hash: true

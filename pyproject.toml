@@ -11,7 +11,11 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
 ]
-dependencies = []
+dependencies = [
+    "dateutils==0.6.12",
+    "requests==2.31.0",
+    "backoff==2.2.1"
+]
 [project.urls]
 homepage = "https://github.com/Kanaries/kanaries-track"
 repository = "https://github.com/Kanaries/kanaries-track"
@@ -36,7 +40,7 @@ exclude = [ "/tests" ]
 [tool.hatch.build.targets.sdist]
 include = [
     "README.md", "LICENSE",
-    "gw_dsl_parser"
+    "kanaries_track"
 ]
 [build-system]
 requires = ["hatchling"]
