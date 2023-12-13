@@ -1,12 +1,12 @@
 [project]
-name = "kanareis_track"
+name = "kanaries_track"
 dynamic = ["version"]
 requires-python = ">=3.6"
-description = "kanareis_track: track to kanareis data infra"
+description = "kanaries_track: track to kanaries data infra"
 authors = [ { name = "kanaries", email = "support@kanaries.net" } ]
 license-files = { paths = ["LICENSE"] }
 readme = "README.md"
-keywords = [ 'kanareis', 'track' ]
+keywords = [ 'kanaries', 'track' ]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
