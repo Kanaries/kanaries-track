@@ -51,5 +51,8 @@ class RequestClient:
     def track(self, events: List[Dict[str, Any]]):
         """Send events to kanaries-track server"""
         logger.debug("send requests to server, event count: %s", len(events))
-        resp = self._post("/ingest/track", events)
-        logger.debug("track resp: %s", resp.text)
+        try:
+            resp = self._post("/ingest/track", events)
+            logger.debug("track resp: %s", resp.text)
+        except Exception as e:
+            logger.error("Failed to send events to server: %s", str(e))
