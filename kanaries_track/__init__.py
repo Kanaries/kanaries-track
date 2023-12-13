@@ -6,7 +6,7 @@ from .config import config
 
 
 __all__ = ["track", "config"]
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 _logger = _logging.getLogger("kanaries_track")
 
