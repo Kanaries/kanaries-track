@@ -39,7 +39,7 @@ class RequestClient:
         def __post():
             return self.session.post(
                 url,
-                headers={"Track-Key": "tk-aa-aa"},
+                headers={"Track-Key": self.auth_token},
                 json=data,
                 timeout=self.timeout,
                 verify=self.verify,
