@@ -12,9 +12,9 @@ classifiers = [
     "License :: OSI Approved :: Apache Software License",
 ]
 dependencies = [
-    "dateutils==0.6.12",
-    "requests==2.31.0",
-    "backoff==2.2.1"
+    "dateutils>=0.6.12",
+    "requests>=2.31.0",
+    "backoff>=2.2.1"
 ]
 [project.urls]
 homepage = "https://github.com/Kanaries/kanaries-track"
