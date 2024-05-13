@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.7', '3.11']
+        python-version: ['3.8', '3.12']
         os-version: [ubuntu-latest, windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os-version }}
@@ -39,8 +39,8 @@ jobs:
           pip install build twine
           python -m build .
       - name: Uploading PyPI
-        if: ${{ matrix.python-version == '3.11' && matrix.os-version == 'ubuntu-latest' }}
-        uses: pypa/gh-action-pypi-publish@v1.8.5
+        if: ${{ matrix.python-version == '3.12' && matrix.os-version == 'ubuntu-latest' }}
+        uses: pypa/gh-action-pypi-publish@v1.8.14
         with:
           # PyPI user
           # Password for your PyPI user or an access token
