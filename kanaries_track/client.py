@@ -59,7 +59,7 @@ class _Consumer(Thread):
             except queue.Empty:
                 break
             except Exception as e:
-                logger.error("Failed to get event from queue: %s", str(e))
+                logger.debug("Failed to get event from queue: %s", str(e))
 
         logger.debug("invoke uploading events, event count: %s", len(events))
         if events:

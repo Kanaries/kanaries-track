@@ -55,4 +55,4 @@ class RequestClient:
             resp = self._post("/ingest/track", events)
             logger.debug("track resp: %s", resp.text)
         except Exception as e:
-            logger.error("Failed to send events to server: %s", str(e))
+            logger.debug("Failed to send events to server: %s", str(e))
